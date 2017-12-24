@@ -12,9 +12,57 @@ sudo systemctl restart nginx
 sudo systemctl enable nginx
 # Use Nginx as Cache by Changing nginx.conf and Put Images Under /data/image then Visit 119.23.63.121/image/cat.png
 sudo vi /etc/nginx/nginx.conf
-location /image/ {
-  root "/data";
-}
+    server {
+        listen 80;
+        server_name  _;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+        }
+
+        location /image/ {
+            root "/data";
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+
+# Use Nginx as Both Cache and Proxy by Changing nginx.conf and Put Images Under /data/image then Visit 119.23.63.121/image/cat.png and 119.23.63.121/evolution.html
+sudo vi /etc/nginx/nginx.conf
+    server {
+        listen 80;
+        server_name  _;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+            proxy_pass "http://localhost:8080";
+        }
+
+        location /image/ {
+            root "/data";
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+
 
 
 
