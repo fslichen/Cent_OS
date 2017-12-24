@@ -1,25 +1,21 @@
 # Install Nginx
 sudo yum install epel-release
-sudo yum update && systemctl reboot
+sudo yum update
 sudo yum install nginx
-# Create Directories
-sudo mkdir /etc/nginx/sites-available
-sudo mkdir /etc/nginx/sites-enabled
-# Change Main Configuration File
+# Backup Main Configuration File
 sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx_original.conf
-sudo vi /etc/nginx/nginx.conf # Add include /etc/nginx/sites-enabled/*; within the http block.
-# Create Configuration File Under sites-available
-sudo vi /etc/nginx/sites-available/evolution # Add the following:
+# Start Nginx 
+sudo systemctl start nginx
+# Restart Nginx
+sudo systemctl restart nginx
+# Start Nginx at System Boot
+sudo systemctl enable nginx
+# Sample for Reverse Proxy
 server {
   listen 80;
   location / {
     proxy_pass "http://119.23.63.121:8080"
   }
 }
-# Create Link Under sites-enabled to sites-available
-sudo ln -s /etc/nginx/sites-available/evolution /etc/nginx/sites-enabled/evolution
-# Start Nginx 
-sudo systemctl start nginx
-# Start Nginx at System Boot
-sudo systemctl enable nginx
+
 
