@@ -10,12 +10,12 @@ sudo systemctl start nginx
 sudo systemctl restart nginx
 # Start Nginx at System Boot
 sudo systemctl enable nginx
-# Sample for Reverse Proxy
-server {
-  listen 80;
-  location / {
-    proxy_pass "http://119.23.63.121:8080"
-  }
+# Use Nginx as Cache by Changing nginx.conf and Put Images Under /data/image then Visit 119.23.63.121/image/cat.png
+sudo vi /etc/nginx/nginx.conf
+location /image/ {
+  root "/data";
 }
+
+
 
 
