@@ -1,0 +1,12 @@
+# Install Mariadb
+sudo yum install mariadb-server
+# Start Mariadb
+sudo systemctl start mariadb
+# Verify the Status of Mariadb
+sudo systemctl status mariadb
+# Launch Mariadb at System Boot
+sudo systemctl enable mariadb
+# Install Mariadb in a Secure Way
+sudo mysql_secure_installation
+# Enter Mariadb Shell
+mysql -u root -p
