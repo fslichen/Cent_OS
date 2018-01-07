@@ -1,0 +1,7 @@
+# Print the last ten lines of the file. 
+tail nohup.out
+
+# Print the last 100 lines of the file.
+tail -n 100 nohup.out
+
+
