@@ -4,4 +4,8 @@ tail nohup.out
 # Print the last 100 lines of the file.
 tail -n 100 nohup.out
 
+# Follow the update and print the last 100 lines. 
+tail -f -n 100 nohup.out
 
+# Follow the update, the sleep interval is 5 seconds, and the number of lines displayed is 100.
+tail -f -s 5 -n 100 nohup.out
