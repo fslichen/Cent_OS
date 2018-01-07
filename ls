@@ -16,4 +16,11 @@ ls -ld
 # Display detailed information and sort by modify time.
 ls -lt
 
+# List files in detaul and sort by modifiy time in reversed order.
+ls -ltr
 
+# Display all the hidden files.
+ls -a
+
+# Display the files inode numbers.
+ls -i
